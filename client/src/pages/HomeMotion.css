@@ -169,7 +169,9 @@
 
 @keyframes product-gentle-float {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  50%      { transform: translateY(-5px) rotate(0.5deg); }
+  25%      { transform: translateY(-4px) rotate(0.8deg); }
+  50%      { transform: translateY(-6px) rotate(-0.5deg); }
+  75%      { transform: translateY(-3px) rotate(0.6deg); }
 }
 
 .product-float {
