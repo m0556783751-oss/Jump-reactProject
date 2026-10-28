@@ -15,6 +15,7 @@ import StaffRoute from './components/StaffRoute'
 import AdminPlants from './pages/admin/AdminPlants'
 import AdminOrders from './pages/admin/AdminOrders'
 import AdminMessages from './pages/admin/AdminMessages'
+import AdminUsers from './pages/admin/AdminUsers'
 import logoImg from './assets/logo.png'
 
 function App() {
@@ -71,6 +72,7 @@ function App() {
           <Route path="/admin/plants" element={<StaffRoute><AdminPlants /></StaffRoute>} />
           <Route path="/admin/orders" element={<StaffRoute><AdminOrders /></StaffRoute>} />
           <Route path="/admin/messages" element={<StaffRoute><AdminMessages /></StaffRoute>} />
+          <Route path="/admin/users" element={<StaffRoute><AdminUsers /></StaffRoute>} />
         </Routes>
       </main>
 

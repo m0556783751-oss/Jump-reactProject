@@ -4,6 +4,7 @@ const TABS = [
   { path: '/admin/plants', label: 'Plants' },
   { path: '/admin/orders', label: 'Orders' },
   { path: '/admin/messages', label: 'Messages' },
+  { path: '/admin/users', label: 'Users' },
 ]
 
 function AdminNav() {

@@ -6,6 +6,7 @@ import { ordersRoutes } from './orders';
 import { gardenRoutes } from './garden';
 import { careRemindersRoutes } from './careReminders';
 import { messagesRoutes } from './messages';
+import { usersRoutes } from './users';
 import { healthRoutes } from './health';
 
 const router = Router();
@@ -17,6 +18,7 @@ router.use('/orders', ordersRoutes);
 router.use('/my-garden', gardenRoutes);
 router.use('/care-reminders', careRemindersRoutes);
 router.use('/messages', messagesRoutes);
+router.use('/users', usersRoutes);
 router.use('/health', healthRoutes);
 
 export { router };
