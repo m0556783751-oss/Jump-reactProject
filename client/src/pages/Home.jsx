@@ -1,33 +1,92 @@
 import { Link } from 'react-router-dom'
+import { useEffect, useRef } from 'react'
 import { useAuth } from '../hooks/useAuth'
 import './Home.css'
+import './HomeMotion.css'
 
 function Home() {
   const { token } = useAuth()
+  const pageRef = useRef(null)
+
+  useEffect(() => {
+    const el = pageRef.current
+    if (!el) return
+
+    /* אובזרבר כללי – לסקשנים עם .reveal */
+    const revealItems = el.querySelectorAll('.reveal, .reveal-scale')
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed')
+            revealObserver.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+    revealItems.forEach(item => revealObserver.observe(item))
+
+    /* אובזרבר מחמיר – לסקשן "איך זה עובד" */
+    /* threshold גבוה + rootMargin שלילי כדי שייכנס רק כשבאמת רואים אותו */
+    const howSection = el.querySelector('.how-section')
+    let howObserver
+    if (howSection) {
+      howObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            const steps = howSection.querySelectorAll('.how-step')
+            steps.forEach((step, idx) => {
+              step.style.animationDelay = `${idx * 0.15}s`
+              step.classList.add('how-visible')
+            })
+            howObserver.unobserve(howSection)
+          }
+        },
+        { threshold: 0.28, rootMargin: '0px 0px -15% 0px' }
+      )
+      howObserver.observe(howSection)
+    }
+
+    return () => {
+      revealObserver.disconnect()
+      howObserver?.disconnect()
+    }
+  }, [])
 
   return (
-    <div className="home-page">
+    <div className="home-page" ref={pageRef}>
 
       {/* Hero */}
       <section className="home-hero">
         <div className="home-hero-blob-1" />
         <div className="home-hero-blob-2" />
 
+        {/* עלים צפים ברקע */}
+        <div className="hero-leaves">
+          <FloatingLeaf n={1} d="M12 2C12 2 8 6 8 10C8 14 10 16 12 16C14 16 16 14 16 10C16 6 12 2 12 2Z" color="#7A8B6A" />
+          <FloatingLeaf n={2} d="M10 2C6 6 4 10 6 14C8 12 12 8 10 2Z" color="#96A788" />
+          <FloatingLeaf n={3} d="M8 0C8 0 2 6 4 12C6 10 10 6 8 0Z" color="#AE7882" />
+          <FloatingLeaf n={4} d="M10 2C14 6 16 12 12 16C10 12 8 6 10 2Z" color="#A7B89B" />
+          <FloatingLeaf n={5} d="M12 2C12 2 8 6 8 10C8 14 10 16 12 16C14 16 16 14 16 10C16 6 12 2 12 2Z" color="#C9A2A9" />
+          <FloatingLeaf n={6} d="M10 2C6 6 4 10 6 14C8 12 12 8 10 2Z" color="#7A8B6A" />
+        </div>
+
         <div className="home-hero-content">
-          <BrandLeaf className="home-hero-logo" />
-          <h1 className="home-hero-title">
+          <BrandLeaf className="home-hero-logo hero-stagger hero-stagger--1" />
+          <h1 className="home-hero-title hero-stagger hero-stagger--2">
             Verdora
           </h1>
-          <div className="home-hero-divider" />
-          <p className="home-hero-tagline">
+          <div className="home-hero-divider hero-stagger hero-stagger--3" />
+          <p className="home-hero-tagline hero-stagger hero-stagger--4">
             Naturally Smarter for You.
           </p>
 
-          <Link to="/plants" className="home-hero-cta">
+          <Link to="/plants" className="home-hero-cta hero-stagger hero-stagger--5">
             Explore the collection
           </Link>
 
-          <div className="home-hero-scroll">
+          <div className="home-hero-scroll hero-stagger hero-stagger--6">
             <svg className="home-hero-scroll-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round">
               <path d="M10 3v14M4 11l6 6 6-6" />
             </svg>
@@ -38,7 +97,7 @@ function Home() {
       <StemDivider />
 
       {/* The Concept */}
-      <section className="home-concept">
+      <section className="home-concept reveal">
         <div className="home-concept-inner">
           <div className="home-concept-grid">
             <div>
@@ -67,12 +126,12 @@ function Home() {
       <StemDivider flip />
 
       {/* How it works */}
-      <section className="home-how">
+      <section className="home-how how-section">
         <div className="home-how-inner">
-          <h2 className="home-how-title">How it works</h2>
+          <h2 className="home-how-title how-step">How it works</h2>
 
           <div className="home-how-steps-wrap">
-            <div className="home-how-vine">
+            <div className="home-how-vine how-step">
               <svg className="home-how-vine-svg" viewBox="0 0 600 28" fill="none" preserveAspectRatio="none">
                 <path d="M0 14 C80 4, 160 24, 300 14 C440 4, 520 24, 600 14" stroke="#5F7150" strokeWidth="1.2" strokeLinecap="round" opacity="0.3" />
                 <circle cx="300" cy="14" r="2.5" fill="#AE7882" opacity="0.6" />
@@ -107,7 +166,7 @@ function Home() {
       {!token && (
         <>
           <StemDivider />
-          <section className="home-cta">
+          <section className="home-cta reveal">
             <div className="home-cta-inner">
               <h2 className="home-cta-title">Ready to start growing?</h2>
               <p className="home-cta-subtitle">
@@ -128,6 +187,15 @@ function Home() {
         </>
       )}
     </div>
+  )
+}
+
+
+function FloatingLeaf({ n, d, color }) {
+  return (
+    <svg className={`hero-leaf hero-leaf--${n}`} viewBox="0 0 24 18" fill="none">
+      <path d={d} fill={color} opacity="0.6" stroke={color} strokeWidth="0.5" strokeLinejoin="round" />
+    </svg>
   )
 }
 
@@ -157,7 +225,7 @@ function StemDivider({ flip }) {
 
 function ProductCard() {
   return (
-    <div className="home-product-card">
+    <div className="home-product-card product-float">
       <svg className="home-product-svg" viewBox="0 0 260 440" fill="none">
         <rect x="6" y="6" width="248" height="428" rx="18" fill="#FEFCF9" stroke="#C5D1BB" strokeWidth="0.8" />
         <rect x="18" y="18" width="224" height="150" rx="14" fill="#F7F4EF" />
@@ -213,7 +281,7 @@ function ProductCard() {
 
 function StepCard({ number, icon, title, text }) {
   return (
-    <div className="home-step">
+    <div className="home-step how-step">
       <div className="home-step-icon-wrap">
         {icon}
       </div>

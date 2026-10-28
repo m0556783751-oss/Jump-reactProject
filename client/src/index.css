@@ -121,3 +121,77 @@ body {
 .blob-float-3 { animation: float-fast 15s ease-in-out infinite, morph 20s ease-in-out infinite; }
 .blob-float-4 { animation: float-slow 22s ease-in-out infinite, morph-alt 28s ease-in-out infinite; }
 .blob-float-5 { animation: float-mid 16s ease-in-out infinite, morph 18s ease-in-out infinite; }
+
+
+/* ═══════════════════════════════════════════════
+   אנימציות גלובליות – Verdora
+   ═══════════════════════════════════════════════ */
+
+
+/* ─── הרמה בריחוף ─── */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ─── זוהר בריחוף ─── */
+.hover-glow {
+  transition: box-shadow 0.3s ease;
+}
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(167, 184, 155, 0.3);
+}
+
+/* ─── פולס עדין בריחוף ─── */
+@keyframes gentle-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+.hover-pulse:hover {
+  animation: gentle-pulse 1.5s ease-in-out infinite;
+}
+
+/* ─── קו תחתון אנימטיבי לניווט ─── */
+.nav-link-animated {
+  position: relative;
+}
+.nav-link-animated::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--color-green);
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-link-animated:hover::after {
+  width: 100%;
+}
+
+/* ─── כניסת עמוד ─── */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.page-enter {
+  animation: page-enter 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+
+/* ─── נגישות: כיבוי אנימציות גלובליות ─── */
+@media (prefers-reduced-motion: reduce) {
+  .hover-lift:hover { transform: none; }
+  .hover-pulse:hover { animation: none; }
+  .nav-link-animated::after { transition: none; }
+  .page-enter { animation: none; opacity: 1; transform: none; }
+}
