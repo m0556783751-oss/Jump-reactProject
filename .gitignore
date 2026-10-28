@@ -7,3 +7,7 @@ dist/
 *.docx
 *.db
 backend/
+smart-nursery-backend/
+smart-nursery-client/
+Mally Wallach/
+prompt.md.docx
