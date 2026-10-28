@@ -27,9 +27,9 @@ function App() {
     <div className="min-h-screen bg-cream flex flex-col">
       <nav className="bg-white/85 backdrop-blur-md border-b border-pink-light/25 sticky top-0 z-10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-22">
             <Link to="/" className="no-underline hover:opacity-80 transition-opacity">
-              <img src={logoImg} alt="Verdora" className="h-14" />
+              <img src={logoImg} alt="Verdora" className="h-20" />
             </Link>
 
             <button
