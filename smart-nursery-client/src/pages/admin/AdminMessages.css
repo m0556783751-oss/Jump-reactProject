@@ -1,0 +1,164 @@
+@reference "../../index.css";
+
+/* ניהול הודעות */
+
+/* מיכל הדף */
+.admin-messages-page {
+  @apply max-w-3xl mx-auto;
+}
+
+/* כותרת */
+.admin-messages-header {
+  @apply flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8;
+}
+.admin-messages-title {
+  @apply font-display text-3xl text-ink;
+}
+.admin-messages-subtitle {
+  @apply text-ink-light text-sm mt-1;
+}
+
+/* כפתורי סינון */
+.admin-messages-pills {
+  @apply flex gap-2;
+}
+.admin-messages-pill {
+  @apply px-4 py-1.5 rounded-full text-sm font-medium transition-colors cursor-pointer;
+}
+.admin-messages-pill--active {
+  @apply bg-pink-dark text-white;
+  border: 1px solid var(--color-pink-dark);
+}
+.admin-messages-pill--inactive {
+  @apply text-ink-light;
+  border: 1px solid rgb(201 162 169 / 0.5);
+  background: rgb(255 255 255 / 0.5);
+}
+.admin-messages-pill--inactive:hover {
+  @apply text-ink border-pink-light;
+}
+
+/* שגיאה */
+.admin-messages-error {
+  @apply mb-5 py-2.5 px-4 rounded-lg bg-pink-pale text-pink-deep text-sm flex items-center justify-between;
+}
+.admin-messages-error-close {
+  @apply cursor-pointer ml-4;
+  color: rgb(118 69 83 / 0.5);
+}
+.admin-messages-error-close:hover {
+  @apply text-pink-deep;
+}
+
+/* הצלחה */
+.admin-messages-success {
+  @apply mb-5 py-2.5 px-4 rounded-lg text-green-dark text-sm flex items-center justify-between;
+  background: rgb(95 113 80 / 0.1);
+}
+.admin-messages-success-close {
+  @apply cursor-pointer ml-4;
+  color: rgb(69 84 54 / 0.5);
+}
+.admin-messages-success-close:hover {
+  @apply text-green-dark;
+}
+
+/* טעינה */
+.admin-messages-loading {
+  @apply flex justify-center py-16;
+}
+.admin-messages-spinner {
+  @apply w-6 h-6 border-2 border-green-pale border-t-green rounded-full animate-spin;
+}
+
+/* ריק */
+.admin-messages-empty {
+  @apply py-16 text-center;
+}
+.admin-messages-empty-text {
+  @apply text-ink-light;
+}
+
+/* רשימה */
+.admin-messages-list {
+  @apply space-y-3;
+}
+
+/* כרטיס הודעה */
+.admin-message-card {
+  @apply rounded-xl px-6 py-4 transition-all duration-300;
+  background: rgb(255 255 255 / 0.5);
+  border: 1px solid rgb(167 184 155 / 0.15);
+}
+.admin-message-card:hover {
+  border-color: rgb(167 184 155 / 0.4);
+  @apply shadow-md -translate-y-0.5;
+}
+.admin-message-top {
+  @apply flex items-center justify-between mb-2;
+}
+.admin-message-user-wrap {
+  @apply flex items-center gap-2;
+}
+.admin-message-user {
+  @apply text-sm font-medium text-ink;
+}
+.admin-message-new-tag {
+  @apply px-2 py-0.5 rounded-full text-[10px] font-medium bg-pink-pale text-pink-deep;
+}
+.admin-message-date {
+  @apply text-xs text-ink-faint;
+}
+.admin-message-content {
+  @apply text-ink text-sm mb-2;
+}
+
+/* תשובה קיימת */
+.admin-message-reply {
+  @apply mt-3 pl-4;
+  border-left: 2px solid rgb(201 162 169 / 0.5);
+}
+.admin-message-reply-label {
+  @apply text-xs font-medium text-green-dark mb-1;
+}
+.admin-message-reply-text {
+  @apply text-sm text-ink-light;
+}
+
+/* טופס תשובה */
+.admin-message-reply-form {
+  @apply mt-3 pt-3;
+  border-top: 1px solid rgb(167 184 155 / 0.15);
+}
+.admin-message-reply-textarea {
+  @apply w-full px-4 py-2.5 rounded-lg bg-cream text-ink text-sm transition-colors resize-none mb-3;
+  border: 1px solid rgb(167 184 155 / 0.2);
+}
+.admin-message-reply-textarea::placeholder {
+  @apply text-ink-faint;
+}
+.admin-message-reply-textarea:focus {
+  @apply outline-none border-green;
+  box-shadow: 0 0 0 1px rgb(95 113 80 / 0.2);
+}
+.admin-message-reply-actions {
+  @apply flex gap-2;
+}
+.admin-message-reply-submit {
+  @apply px-4 py-1.5 text-sm font-medium rounded-full cursor-pointer;
+}
+.admin-message-reply-submit:disabled {
+  @apply opacity-50;
+}
+.admin-message-reply-cancel {
+  @apply px-4 py-1.5 text-sm font-medium text-ink-light rounded-full transition-colors cursor-pointer;
+  border: 1px solid rgb(167 184 155 / 0.3);
+}
+.admin-message-reply-cancel:hover {
+  border-color: rgb(167 184 155 / 0.6);
+}
+
+/* כפתור תשובה */
+.admin-message-reply-btn {
+  @apply mt-2 px-4 py-1.5 text-sm font-medium rounded-full cursor-pointer;
+}

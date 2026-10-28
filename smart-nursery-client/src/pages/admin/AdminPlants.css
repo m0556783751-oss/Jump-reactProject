@@ -1,0 +1,190 @@
+@reference "../../index.css";
+
+/* ניהול צמחים */
+
+/* מיכל הדף */
+.admin-plants-page {
+  @apply max-w-4xl mx-auto;
+}
+
+/* כותרת */
+.admin-plants-header {
+  @apply flex items-center justify-between mb-8;
+}
+.admin-plants-title {
+  @apply font-display text-3xl text-ink;
+}
+.admin-plants-subtitle {
+  @apply text-ink-light text-sm mt-1;
+}
+.admin-plants-add-btn {
+  @apply px-5 py-2 text-sm font-medium rounded-full cursor-pointer;
+}
+
+/* שגיאה */
+.admin-plants-error {
+  @apply mb-5 py-2.5 px-4 rounded-lg bg-pink-pale text-pink-deep text-sm flex items-center justify-between;
+}
+.admin-plants-error-close {
+  @apply cursor-pointer ml-4;
+  color: rgb(118 69 83 / 0.5);
+}
+.admin-plants-error-close:hover {
+  @apply text-pink-deep;
+}
+
+/* הצלחה */
+.admin-plants-success {
+  @apply mb-5 py-2.5 px-4 rounded-lg text-green-dark text-sm flex items-center justify-between;
+  background: rgb(95 113 80 / 0.1);
+}
+.admin-plants-success-close {
+  @apply cursor-pointer ml-4;
+  color: rgb(69 84 54 / 0.5);
+}
+.admin-plants-success-close:hover {
+  @apply text-green-dark;
+}
+
+/* כרטיס טופס */
+.admin-plants-form-card {
+  @apply rounded-xl p-6 mb-8;
+  background: rgb(255 255 255 / 0.5);
+  border: 1px solid rgb(167 184 155 / 0.15);
+}
+.admin-plants-form-title {
+  @apply font-display text-xl text-ink mb-5;
+}
+.admin-plants-form {
+  @apply space-y-4;
+}
+.admin-plants-form-row-2 {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
+}
+.admin-plants-form-row-3 {
+  @apply grid grid-cols-1 sm:grid-cols-3 gap-4;
+}
+
+/* שדות */
+.admin-plants-label {
+  @apply block text-sm font-medium text-ink-light mb-1.5;
+}
+.admin-plants-input {
+  @apply w-full px-4 py-2.5 rounded-lg bg-white text-ink text-sm transition-colors;
+  border: 1px solid rgb(167 184 155 / 0.2);
+}
+.admin-plants-input::placeholder {
+  @apply text-ink-faint;
+}
+.admin-plants-input:focus {
+  @apply outline-none border-green;
+  box-shadow: 0 0 0 1px rgb(95 113 80 / 0.2);
+}
+.admin-plants-textarea {
+  @apply resize-none;
+}
+.admin-plants-field-error {
+  @apply text-pink-dark text-xs mt-1;
+}
+
+/* צ'קבוקס */
+.admin-plants-checkbox-label {
+  @apply flex items-center gap-2 text-sm text-ink-light cursor-pointer;
+}
+.admin-plants-checkbox {
+  @apply accent-green;
+}
+
+/* כפתורי טופס */
+.admin-plants-form-actions {
+  @apply flex gap-3 pt-2;
+}
+.admin-plants-form-submit {
+  @apply px-5 py-2 text-sm font-medium rounded-full cursor-pointer;
+}
+.admin-plants-form-submit:disabled {
+  @apply opacity-50;
+}
+.admin-plants-form-cancel {
+  @apply px-5 py-2 text-sm font-medium text-ink-light rounded-full transition-colors cursor-pointer;
+  border: 1px solid rgb(167 184 155 / 0.3);
+}
+.admin-plants-form-cancel:hover {
+  border-color: rgb(167 184 155 / 0.6);
+}
+
+/* טעינה */
+.admin-plants-loading {
+  @apply flex justify-center py-16;
+}
+.admin-plants-spinner {
+  @apply w-6 h-6 border-2 border-green-pale border-t-green rounded-full animate-spin;
+}
+
+/* ריק */
+.admin-plants-empty {
+  @apply py-16 text-center;
+}
+.admin-plants-empty-text {
+  @apply text-ink-light;
+}
+
+/* רשימה */
+.admin-plants-list {
+  @apply space-y-3;
+}
+
+/* כרטיס צמח */
+.admin-plant-card {
+  @apply rounded-xl px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-300;
+  background: rgb(255 255 255 / 0.5);
+  border: 1px solid rgb(167 184 155 / 0.15);
+}
+.admin-plant-card:hover {
+  border-color: rgb(167 184 155 / 0.4);
+  @apply shadow-md -translate-y-0.5;
+}
+.admin-plant-card--hidden {
+  @apply opacity-50;
+}
+.admin-plant-info {
+  @apply flex-1 min-w-0;
+}
+.admin-plant-name-row {
+  @apply flex items-center gap-2 mb-1;
+}
+.admin-plant-name {
+  @apply font-display text-lg text-ink truncate;
+}
+.admin-plant-hidden-tag {
+  @apply px-2 py-0.5 rounded-full text-[10px] font-medium shrink-0;
+  background-color: #F5EAE6;
+  color: #905A67;
+}
+.admin-plant-desc {
+  @apply text-ink-faint text-sm truncate;
+}
+.admin-plant-meta {
+  @apply flex items-center gap-3 mt-1 text-xs text-ink-faint;
+}
+.admin-plant-price {
+  @apply text-green-dark font-semibold;
+}
+.admin-plant-actions {
+  @apply flex items-center gap-2 shrink-0;
+}
+.admin-plant-edit-btn {
+  @apply px-4 py-1.5 text-sm font-medium rounded-full cursor-pointer;
+}
+.admin-plant-toggle-btn {
+  @apply px-4 py-1.5 text-sm font-medium rounded-full transition-colors cursor-pointer;
+}
+.admin-plant-toggle-btn--show {
+  @apply text-green-dark border border-green-pale;
+}
+.admin-plant-toggle-btn--show:hover {
+  background: rgb(95 113 80 / 0.1);
+}
+.admin-plant-toggle-btn--hide {
+  @apply text-pink-dark border border-pink-light hover:bg-pink-pale;
+}

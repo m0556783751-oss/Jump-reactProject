@@ -1,0 +1,134 @@
+@reference "../../index.css";
+
+/* ניהול הזמנות */
+
+/* מיכל הדף */
+.admin-orders-page {
+  @apply max-w-4xl mx-auto;
+}
+
+/* כותרת ופילטרים */
+.admin-orders-header {
+  @apply flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8;
+}
+.admin-orders-title {
+  @apply font-display text-3xl text-ink;
+}
+.admin-orders-subtitle {
+  @apply text-ink-light text-sm mt-1;
+}
+
+/* כפתורי סינון */
+.admin-orders-pills {
+  @apply flex gap-2 flex-wrap;
+}
+.admin-orders-pill {
+  @apply px-4 py-1.5 rounded-full text-sm font-medium transition-colors cursor-pointer;
+}
+.admin-orders-pill--active {
+  @apply bg-pink-dark text-white;
+  border: 1px solid var(--color-pink-dark);
+}
+.admin-orders-pill--inactive {
+  @apply text-ink-light;
+  border: 1px solid rgb(201 162 169 / 0.5);
+  background: rgb(255 255 255 / 0.5);
+}
+.admin-orders-pill--inactive:hover {
+  @apply text-ink border-pink-light;
+}
+
+/* שגיאה */
+.admin-orders-error {
+  @apply mb-5 py-2.5 px-4 rounded-lg bg-pink-pale text-pink-deep text-sm flex items-center justify-between;
+}
+.admin-orders-error-close {
+  @apply cursor-pointer ml-4;
+  color: rgb(118 69 83 / 0.5);
+}
+.admin-orders-error-close:hover {
+  @apply text-pink-deep;
+}
+
+/* הצלחה */
+.admin-orders-success {
+  @apply mb-5 py-2.5 px-4 rounded-lg text-green-dark text-sm flex items-center justify-between;
+  background: rgb(95 113 80 / 0.1);
+}
+.admin-orders-success-close {
+  @apply cursor-pointer ml-4;
+  color: rgb(69 84 54 / 0.5);
+}
+.admin-orders-success-close:hover {
+  @apply text-green-dark;
+}
+
+/* טעינה */
+.admin-orders-loading {
+  @apply flex justify-center py-16;
+}
+.admin-orders-spinner {
+  @apply w-6 h-6 border-2 border-green-pale border-t-green rounded-full animate-spin;
+}
+
+/* ריק */
+.admin-orders-empty {
+  @apply py-16 text-center;
+}
+.admin-orders-empty-text {
+  @apply text-ink-light;
+}
+
+/* רשימה */
+.admin-orders-list {
+  @apply space-y-3;
+}
+
+/* כרטיס הזמנה */
+.admin-order-card {
+  @apply rounded-xl px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-300;
+  background: rgb(255 255 255 / 0.5);
+  border: 1px solid rgb(167 184 155 / 0.15);
+}
+.admin-order-card:hover {
+  border-color: rgb(167 184 155 / 0.4);
+  @apply shadow-md -translate-y-0.5;
+}
+.admin-order-info {
+  @apply flex-1 min-w-0;
+}
+.admin-order-plant {
+  @apply font-display text-lg text-ink;
+}
+.admin-order-meta {
+  @apply flex items-center gap-3 mt-1 text-sm text-ink-faint;
+}
+.admin-order-actions {
+  @apply flex items-center gap-3;
+}
+
+/* תג סטטוס */
+.admin-order-status {
+  @apply px-3 py-1 rounded-full text-xs font-medium;
+}
+.admin-order-status--completed {
+  @apply text-green-dark;
+  background: rgb(95 113 80 / 0.1);
+}
+.admin-order-status--cancelled {
+  @apply bg-pink-pale text-pink-deep;
+}
+.admin-order-status--pending {
+  @apply bg-cream-deep text-ink-light;
+}
+
+/* כפתורי פעולה */
+.admin-order-complete-btn {
+  @apply px-4 py-1.5 text-sm font-medium text-green-dark border border-green-pale rounded-full transition-colors cursor-pointer;
+}
+.admin-order-complete-btn:hover {
+  background: rgb(95 113 80 / 0.1);
+}
+.admin-order-cancel-btn {
+  @apply px-4 py-1.5 text-sm font-medium text-pink-dark border border-pink-light rounded-full hover:bg-pink-pale transition-colors cursor-pointer;
+}

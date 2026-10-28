@@ -1,0 +1,13 @@
+@reference "../index.css";
+
+/* רכיב הגנה על דפי ניהול */
+
+/* מיכל טעינה – מרכוז ספינר */
+.staff-route-loading {
+  @apply flex justify-center py-16;
+}
+
+/* ספינר טעינה */
+.staff-route-spinner {
+  @apply w-6 h-6 border-2 border-green-pale border-t-green rounded-full animate-spin;
+}

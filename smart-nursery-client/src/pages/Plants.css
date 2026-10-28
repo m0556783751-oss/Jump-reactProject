@@ -1,0 +1,175 @@
+@reference "../index.css";
+
+/* עמוד הקולקציה */
+
+/* רקע הדף */
+.plants-page {
+  @apply -mx-4 sm:-mx-6 -mt-10 px-4 sm:px-6 pt-10 pb-10 min-h-screen;
+  background: rgb(227 205 210 / 0.08);
+}
+
+/* כותרת */
+.plants-header {
+  @apply mb-5;
+}
+.plants-title {
+  @apply font-display text-4xl text-ink mb-1;
+}
+.plants-subtitle {
+  @apply text-ink-light text-sm;
+}
+
+/* חיפוש ופילטרים */
+.plants-filters {
+  @apply flex flex-col sm:flex-row sm:items-center gap-3 mb-5;
+}
+.plants-search-wrap {
+  @apply relative sm:w-64;
+}
+.plants-search-icon {
+  @apply absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4;
+  color: rgb(136 150 124 / 0.5);
+}
+.plants-search-input {
+  @apply w-full pl-9 pr-4 py-2 rounded-full text-ink text-sm transition-colors;
+  border: 1px solid rgb(167 184 155 / 0.2);
+  background: rgb(255 255 255 / 0.7);
+}
+.plants-search-input::placeholder {
+  @apply text-ink-faint;
+}
+.plants-search-input:focus {
+  @apply outline-none border-green-pale;
+  box-shadow: 0 0 0 1px rgb(167 184 155 / 0.3);
+}
+
+/* כפתורי סינון */
+.plants-chips {
+  @apply flex gap-1.5 flex-wrap;
+}
+.plants-chip {
+  @apply px-3.5 py-1 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer;
+}
+.plants-chip--active {
+  @apply bg-pink-dark text-white;
+  border: 1px solid var(--color-pink-dark);
+}
+.plants-chip--inactive {
+  @apply text-ink-light;
+  border: 1px solid rgb(201 162 169 / 0.5);
+  background: rgb(255 255 255 / 0.5);
+}
+.plants-chip--inactive:hover {
+  @apply text-ink border-pink-light;
+}
+
+/* הודעת הוספה */
+.plants-toast {
+  @apply mb-4 py-2 px-4 rounded-xl text-green-dark text-sm flex items-center justify-between;
+  background: rgb(167 184 155 / 0.2);
+}
+.plants-toast-close {
+  @apply hover:text-green-dark cursor-pointer ml-4;
+  color: rgb(69 84 54 / 0.4);
+}
+
+/* טעינה */
+.plants-loading {
+  @apply flex justify-center py-20;
+}
+.plants-spinner {
+  @apply w-6 h-6 border-2 border-green-pale border-t-green rounded-full animate-spin;
+}
+
+/* מצב ריק */
+.plants-empty {
+  @apply py-20 flex flex-col items-center text-center;
+}
+.plants-empty-text {
+  @apply text-ink-faint text-sm mt-4 font-light;
+}
+.plants-empty-clear {
+  @apply mt-2 text-green-dark text-sm font-medium hover:text-green transition-colors cursor-pointer;
+}
+
+/* רשת מוצרים */
+.plants-grid {
+  @apply grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5;
+}
+
+/* כרטיס מוצר */
+.plant-card {
+  @apply rounded-2xl overflow-hidden transition-all duration-500;
+  background: rgb(255 255 255 / 0.5);
+  border: 1px solid rgb(167 184 155 / 0.15);
+}
+.plant-card:hover {
+  border-color: rgb(167 184 155 / 0.4);
+  @apply shadow-lg -translate-y-1;
+}
+
+/* אזור איור */
+.plant-card-illustration {
+  @apply relative px-4 pt-4 pb-2 flex justify-center h-40 sm:h-48;
+}
+.plant-card-illustration-inner {
+  @apply w-full h-full max-w-[140px] transition-transform duration-500;
+}
+.plant-card:hover .plant-card-illustration-inner {
+  transform: scale(1.03);
+}
+
+/* תג קטגוריה */
+.plant-card-category {
+  @apply absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full text-[10px] font-medium;
+}
+
+/* מידע */
+.plant-card-info {
+  @apply px-4 pt-3 pb-4;
+}
+.plant-card-name {
+  @apply font-display text-base sm:text-lg text-ink font-semibold leading-tight mb-0.5 truncate;
+}
+.plant-card-price {
+  @apply text-base text-green-dark font-semibold mb-2;
+}
+
+/* שורת מפרט */
+.plant-card-specs {
+  @apply flex items-center gap-2.5 mb-3 flex-wrap;
+}
+.plant-card-spec {
+  @apply flex items-center gap-1 text-ink-faint;
+}
+.plant-card-spec-text {
+  @apply text-[10px];
+}
+.plant-card-spec-icon {
+  @apply w-3 h-3 flex-shrink-0;
+}
+
+/* כפתור הוספה לסל */
+.plant-card-add {
+  @apply w-full py-2 rounded-full text-xs font-medium transition-all duration-300 cursor-pointer;
+  border: 1px solid rgb(201 162 169 / 0.5);
+  color: var(--color-pink-dark);
+  background: rgb(227 205 210 / 0.15);
+}
+.plant-card-add:hover {
+  background: rgb(201 162 169 / 0.3);
+  border-color: var(--color-pink);
+}
+@media (min-width: 640px) {
+  .plant-card-add {
+    opacity: 0;
+  }
+  .plant-card:hover .plant-card-add {
+    opacity: 1;
+  }
+}
+
+/* אייקון עציץ ריק */
+.plants-empty-pot {
+  @apply w-20 h-24;
+}

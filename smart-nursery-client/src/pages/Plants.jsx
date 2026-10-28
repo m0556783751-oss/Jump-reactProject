@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useAuth } from '../hooks/useAuth'
 import { useCart } from '../hooks/useCart'
 import { getPlantIllustration } from '../components/PlantIllustrations'
+import './Plants.css'
 
 const DIFFICULTY_HE = { EASY: 'קל', MEDIUM: 'בינוני', HARD: 'מאתגר' }
 const SUNLIGHT_HE = { FULL_SUN: 'שמש מלאה', PARTIAL_SHADE: 'אור עקיף', LOW_LIGHT: 'צל' }
@@ -46,28 +47,26 @@ function Plants() {
     .filter(p => !search.trim() || p.name.toLowerCase().includes(search.trim().toLowerCase()) || p.description?.toLowerCase().includes(search.trim().toLowerCase()))
 
   return (
-    <div className="-mx-4 sm:-mx-6 -mt-10 px-4 sm:px-6 pt-10 pb-10 bg-pink-pale/8 min-h-screen">
-      {/* Header */}
-      <div className="mb-5">
-        <h1 className="font-display text-4xl text-ink mb-1">The Collection</h1>
-        <p className="text-ink-light text-sm">Curated plants for every space and every lifestyle.</p>
+    <div className="plants-page">
+      <div className="plants-header">
+        <h1 className="plants-title">The Collection</h1>
+        <p className="plants-subtitle">Curated plants for every space and every lifestyle.</p>
       </div>
 
-      {/* Search + filters */}
-      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-5">
-        <div className="relative sm:w-64">
+      <div className="plants-filters">
+        <div className="plants-search-wrap">
           <SearchIcon />
           <input
             type="text"
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Search by name..."
-            className="w-full pl-9 pr-4 py-2 rounded-full border border-green-pale/20 bg-white/70 text-ink placeholder-ink-faint focus:outline-none focus:border-green-pale focus:ring-1 focus:ring-green-pale/30 transition-colors text-sm"
+            className="plants-search-input"
           />
         </div>
 
         {categories.length > 0 && (
-          <div className="flex gap-1.5 flex-wrap">
+          <div className="plants-chips">
             <Chip active={!activeCategory} onClick={() => setActiveCategory('')}>All</Chip>
             {categories.map(cat => (
               <Chip key={cat.id} active={activeCategory === cat.id} onClick={() => setActiveCategory(cat.id)}>
@@ -78,30 +77,27 @@ function Plants() {
         )}
       </div>
 
-      {/* Toast */}
       {message && (
-        <div className="mb-4 py-2 px-4 rounded-xl bg-green-pale/20 text-green-dark text-sm flex items-center justify-between">
+        <div className="plants-toast">
           <span>{message}</span>
-          <button onClick={() => setMessage('')} className="text-green-dark/40 hover:text-green-dark cursor-pointer ml-4">&times;</button>
+          <button onClick={() => setMessage('')} className="plants-toast-close">&times;</button>
         </div>
       )}
 
-      {/* Loading */}
       {isLoading && (
-        <div className="flex justify-center py-20">
-          <div className="w-6 h-6 border-2 border-green-pale border-t-green rounded-full animate-spin" />
+        <div className="plants-loading">
+          <div className="plants-spinner" />
         </div>
       )}
 
-      {/* Empty state */}
       {!isLoading && filtered.length === 0 && (
-        <div className="py-20 flex flex-col items-center text-center">
+        <div className="plants-empty">
           <EmptyPot />
-          <p className="text-ink-faint text-sm mt-4 font-light">No plants match your search.</p>
+          <p className="plants-empty-text">No plants match your search.</p>
           {(search || activeCategory) && (
             <button
               onClick={() => { setSearch(''); setActiveCategory('') }}
-              className="mt-2 text-green-dark text-sm font-medium hover:text-green transition-colors cursor-pointer"
+              className="plants-empty-clear"
             >
               Clear filters
             </button>
@@ -109,8 +105,7 @@ function Plants() {
         </div>
       )}
 
-      {/* Product grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
+      <div className="plants-grid">
         {filtered.map(plant => (
           <PlantCard
             key={plant.id}
@@ -125,19 +120,16 @@ function Plants() {
 }
 
 
-/* ─── Product card ─── */
-
 function PlantCard({ plant, token, onAdd }) {
   return (
-    <div className="group bg-white/50 border border-green-pale/15 rounded-2xl overflow-hidden transition-all duration-500 hover:border-green-pale/40 hover:shadow-lg hover:-translate-y-1">
-      {/* Illustration area */}
-      <div className="relative px-4 pt-4 pb-2 flex justify-center h-40 sm:h-48" style={{ backgroundColor: CARD_BG }}>
-        <div className="w-full h-full max-w-[140px] transition-transform duration-500 group-hover:scale-[1.03]">
+    <div className="plant-card">
+      <div className="plant-card-illustration" style={{ backgroundColor: CARD_BG }}>
+        <div className="plant-card-illustration-inner">
           {getPlantIllustration(plant.name)}
         </div>
         {plant.category && (
           <span
-            className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full text-[10px] font-medium"
+            className="plant-card-category"
             style={{ backgroundColor: CARD_TAG_BG, color: CARD_TAG_TEXT }}
           >
             {plant.category.name}
@@ -145,39 +137,33 @@ function PlantCard({ plant, token, onAdd }) {
         )}
       </div>
 
-      {/* Info */}
-      <div className="px-4 pt-3 pb-4">
-        <h3 className="font-display text-base sm:text-lg text-ink font-semibold leading-tight mb-0.5 truncate">{plant.name}</h3>
-        <p className="text-base text-green-dark font-semibold mb-2">₪{plant.price}</p>
+      <div className="plant-card-info">
+        <h3 className="plant-card-name">{plant.name}</h3>
+        <p className="plant-card-price">₪{plant.price}</p>
 
-        {/* Spec icons row */}
-        <div className="flex items-center gap-2.5 mb-3 flex-wrap">
+        <div className="plant-card-specs">
           {plant.wateringFrequencyDays && (
-            <span className="flex items-center gap-1 text-ink-faint" title={waterLabel(plant.wateringFrequencyDays)}>
+            <span className="plant-card-spec" title={waterLabel(plant.wateringFrequencyDays)}>
               <DropIcon />
-              <span className="text-[10px]">{waterLabel(plant.wateringFrequencyDays)}</span>
+              <span className="plant-card-spec-text">{waterLabel(plant.wateringFrequencyDays)}</span>
             </span>
           )}
           {plant.sunlight && (
-            <span className="flex items-center gap-1 text-ink-faint" title={SUNLIGHT_HE[plant.sunlight] || plant.sunlight}>
+            <span className="plant-card-spec" title={SUNLIGHT_HE[plant.sunlight] || plant.sunlight}>
               <SunIcon />
-              <span className="text-[10px]">{SUNLIGHT_HE[plant.sunlight]}</span>
+              <span className="plant-card-spec-text">{SUNLIGHT_HE[plant.sunlight]}</span>
             </span>
           )}
           {plant.difficulty && (
-            <span className="flex items-center gap-1 text-ink-faint" title={DIFFICULTY_HE[plant.difficulty] || plant.difficulty}>
+            <span className="plant-card-spec" title={DIFFICULTY_HE[plant.difficulty] || plant.difficulty}>
               <CareIcon />
-              <span className="text-[10px]">{DIFFICULTY_HE[plant.difficulty]}</span>
+              <span className="plant-card-spec-text">{DIFFICULTY_HE[plant.difficulty]}</span>
             </span>
           )}
         </div>
 
-        {/* Add to cart */}
         {token && (
-          <button
-            onClick={onAdd}
-            className="w-full py-2 rounded-full text-xs font-medium border border-pink-light/50 text-pink-dark bg-pink-pale/15 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300 hover:bg-pink-light/30 hover:border-pink cursor-pointer"
-          >
+          <button onClick={onAdd} className="plant-card-add">
             Add to cart
           </button>
         )}
@@ -187,17 +173,11 @@ function PlantCard({ plant, token, onAdd }) {
 }
 
 
-/* ─── Chip ─── */
-
 function Chip({ active, onClick, children }) {
   return (
     <button
       onClick={onClick}
-      className={`px-3.5 py-1 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer ${
-        active
-          ? 'bg-pink-dark text-white border border-pink-dark'
-          : 'text-ink-light hover:text-ink border border-pink-light/50 hover:border-pink-light bg-white/50'
-      }`}
+      className={`plants-chip ${active ? 'plants-chip--active' : 'plants-chip--inactive'}`}
     >
       {children}
     </button>
@@ -205,11 +185,9 @@ function Chip({ active, onClick, children }) {
 }
 
 
-/* ─── Icons (logo thin-line style) ─── */
-
 function SearchIcon() {
   return (
-    <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-faint/50" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round">
+    <svg className="plants-search-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round">
       <circle cx="8.5" cy="8.5" r="5.5" />
       <path d="M13 13l4 4" />
     </svg>
@@ -218,7 +196,7 @@ function SearchIcon() {
 
 function DropIcon() {
   return (
-    <svg className="w-3 h-3 flex-shrink-0" viewBox="0 0 12 14" fill="none">
+    <svg className="plant-card-spec-icon" viewBox="0 0 12 14" fill="none">
       <path d="M6 1C6 1 2 6.5 2 9C2 11.2 3.8 13 6 13C8.2 13 10 11.2 10 9C10 6.5 6 1 6 1Z" stroke="#5F7150" strokeWidth="0.9" fill="#5F7150" opacity="0.2" strokeLinejoin="round" />
     </svg>
   )
@@ -226,7 +204,7 @@ function DropIcon() {
 
 function SunIcon() {
   return (
-    <svg className="w-3 h-3 flex-shrink-0" viewBox="0 0 14 14" fill="none">
+    <svg className="plant-card-spec-icon" viewBox="0 0 14 14" fill="none">
       <circle cx="7" cy="7" r="3" stroke="#5F7150" strokeWidth="0.8" fill="#5F7150" opacity="0.15" />
       <path d="M7 1.5V0.5 M7 13.5V12.5 M1.5 7H0.5 M13.5 7H12.5 M3.1 3.1L2.4 2.4 M10.9 10.9L10.2 10.2 M3.1 10.9L2.4 11.6 M10.9 3.1L10.2 3.8" stroke="#5F7150" strokeWidth="0.7" strokeLinecap="round" opacity="0.45" />
     </svg>
@@ -235,7 +213,7 @@ function SunIcon() {
 
 function CareIcon() {
   return (
-    <svg className="w-3 h-3 flex-shrink-0" viewBox="0 0 12 14" fill="none">
+    <svg className="plant-card-spec-icon" viewBox="0 0 12 14" fill="none">
       <path d="M6 13C6 13 5 9.5 5 7.5C5 5.5 5.5 3 6 1" stroke="#5F7150" strokeWidth="0.9" strokeLinecap="round" />
       <path d="M6 8.5C4.5 7.5 2.5 7 2 8C2 8 3.5 10 6 8.5Z" fill="#5F7150" opacity="0.4" stroke="#5F7150" strokeWidth="0.5" />
       <path d="M6 5C7 3 7.5 1.5 7 1C7 1 5.5 2 6 5Z" fill="#AE7882" opacity="0.45" stroke="#AE7882" strokeWidth="0.5" />
@@ -244,11 +222,9 @@ function CareIcon() {
 }
 
 
-/* ─── Empty state ─── */
-
 function EmptyPot() {
   return (
-    <svg className="w-20 h-24" viewBox="0 0 80 96" fill="none">
+    <svg className="plants-empty-pot" viewBox="0 0 80 96" fill="none">
       <path d="M28 56L52 56L49 72L31 72Z" fill="#F0E8DE" stroke="#E2D8CC" strokeWidth="1" />
       <rect x="25" y="52" width="30" height="5" rx="2" fill="#E2D8CC" stroke="#D6CCBE" strokeWidth="0.6" />
       <path d="M40 52 C40 44, 39 36, 40 30" stroke="#5F7150" strokeWidth="1.2" strokeLinecap="round" strokeDasharray="3 3" opacity="0.3" />

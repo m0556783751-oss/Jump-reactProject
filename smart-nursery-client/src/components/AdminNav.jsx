@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
+import './AdminNav.css'
 
 const TABS = [
   { path: '/admin/plants', label: 'Plants' },
@@ -11,17 +12,15 @@ function AdminNav() {
   const { pathname } = useLocation()
 
   return (
-    <div className="flex gap-1 mb-8 border-b border-pink-light/30 pb-px">
+    <div className="admin-nav">
       {TABS.map(tab => {
         const active = pathname === tab.path
         return (
           <Link
             key={tab.path}
             to={tab.path}
-            className={`px-4 py-2.5 text-sm font-medium no-underline transition-colors rounded-t-lg -mb-px ${
-              active
-                ? 'text-pink-dark border-b-2 border-pink bg-white'
-                : 'text-ink-faint hover:text-ink-light'
+            className={`admin-nav-tab ${
+              active ? 'admin-nav-tab--active' : 'admin-nav-tab--inactive'
             }`}
           >
             {tab.label}

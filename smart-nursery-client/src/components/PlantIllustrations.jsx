@@ -1,3 +1,5 @@
+import './PlantIllustrations.css'
+
 const S = '#5F7150'
 const SL = '#7C906C'
 const SP = '#A7B89B'

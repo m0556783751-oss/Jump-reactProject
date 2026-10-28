@@ -1,0 +1,138 @@
+@reference "../../index.css";
+
+/* ניהול משתמשים */
+
+/* מיכל הדף */
+.admin-users-page {
+  @apply max-w-3xl mx-auto;
+}
+
+/* כותרת */
+.admin-users-header {
+  @apply mb-8;
+}
+.admin-users-title {
+  @apply font-display text-3xl text-ink;
+}
+.admin-users-subtitle {
+  @apply text-ink-light text-sm mt-1;
+}
+
+/* שגיאה */
+.admin-users-error {
+  @apply mb-5 py-2.5 px-4 rounded-lg bg-pink-pale text-pink-deep text-sm flex items-center justify-between;
+}
+.admin-users-error-close {
+  @apply cursor-pointer ml-4;
+  color: rgb(118 69 83 / 0.5);
+}
+.admin-users-error-close:hover {
+  @apply text-pink-deep;
+}
+
+/* הצלחה */
+.admin-users-success {
+  @apply mb-5 py-2.5 px-4 rounded-lg text-green-dark text-sm flex items-center justify-between;
+  background: rgb(95 113 80 / 0.1);
+}
+.admin-users-success-close {
+  @apply cursor-pointer ml-4;
+  color: rgb(69 84 54 / 0.5);
+}
+.admin-users-success-close:hover {
+  @apply text-green-dark;
+}
+
+/* טעינה */
+.admin-users-loading {
+  @apply flex justify-center py-16;
+}
+.admin-users-spinner {
+  @apply w-6 h-6 border-2 border-green-pale border-t-green rounded-full animate-spin;
+}
+
+/* ריק */
+.admin-users-empty {
+  @apply py-16 text-center;
+}
+.admin-users-empty-text {
+  @apply text-ink-light;
+}
+
+/* רשימה */
+.admin-users-list {
+  @apply space-y-3;
+}
+
+/* כרטיס משתמש */
+.admin-user-card {
+  @apply rounded-xl px-6 py-4 transition-all duration-300;
+  background: rgb(255 255 255 / 0.5);
+  border: 1px solid rgb(167 184 155 / 0.15);
+}
+.admin-user-card:hover {
+  border-color: rgb(167 184 155 / 0.4);
+  @apply shadow-md -translate-y-0.5;
+}
+.admin-user-row {
+  @apply flex items-center justify-between;
+}
+.admin-user-info {
+  @apply flex items-center gap-3 min-w-0;
+}
+
+/* אווטאר */
+.admin-user-avatar {
+  @apply w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0;
+  background: rgb(167 184 155 / 0.3);
+}
+.admin-user-avatar-letter {
+  @apply text-sm font-medium text-green-dark;
+}
+
+/* פרטים */
+.admin-user-details {
+  @apply min-w-0;
+}
+.admin-user-name {
+  @apply text-sm font-medium text-ink truncate;
+}
+.admin-user-email {
+  @apply text-xs text-ink-faint truncate;
+}
+
+/* פעולות */
+.admin-user-actions {
+  @apply flex items-center gap-3 flex-shrink-0 ml-4;
+}
+.admin-user-date {
+  @apply text-xs text-ink-faint hidden sm:block;
+}
+
+/* כפתורי אישור */
+.admin-user-confirm-wrap {
+  @apply flex items-center gap-2;
+}
+.admin-user-confirm-btn {
+  @apply px-3 py-1 text-xs font-medium text-white bg-pink-deep rounded-full cursor-pointer transition-colors;
+}
+.admin-user-confirm-btn:hover {
+  background: rgb(118 69 83 / 0.8);
+}
+.admin-user-confirm-btn:disabled {
+  @apply opacity-50;
+}
+.admin-user-cancel-btn {
+  @apply px-3 py-1 text-xs font-medium text-ink-light rounded-full transition-colors cursor-pointer;
+  border: 1px solid rgb(167 184 155 / 0.3);
+}
+.admin-user-cancel-btn:hover {
+  border-color: rgb(167 184 155 / 0.6);
+}
+.admin-user-remove-btn {
+  @apply px-3 py-1 text-xs font-medium text-pink-deep rounded-full transition-colors cursor-pointer;
+  border: 1px solid rgb(201 162 169 / 0.5);
+}
+.admin-user-remove-btn:hover {
+  background: rgb(227 205 210 / 0.5);
+}

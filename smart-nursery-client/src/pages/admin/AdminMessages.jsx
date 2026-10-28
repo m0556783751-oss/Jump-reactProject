@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useAuth } from '../../hooks/useAuth'
 import AdminNav from '../../components/AdminNav'
+import './AdminMessages.css'
 
 function AdminMessages() {
   const { token } = useAuth()
@@ -62,101 +63,94 @@ function AdminMessages() {
     reset()
   }
 
-  const pillClass = (active) =>
-    `px-4 py-1.5 rounded-full text-sm font-medium transition-colors cursor-pointer ${
-      active
-        ? 'bg-pink-dark text-white border border-pink-dark'
-        : 'text-ink-light hover:text-ink border border-pink-light/50 hover:border-pink-light bg-white/50'
-    }`
-
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="admin-messages-page">
       <AdminNav />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+      <div className="admin-messages-header">
         <div>
-          <h1 className="font-display text-3xl text-ink">Customer messages</h1>
-          <p className="text-ink-light text-sm mt-1">
+          <h1 className="admin-messages-title">Customer messages</h1>
+          <p className="admin-messages-subtitle">
             {unrepliedCount > 0 ? `${unrepliedCount} awaiting reply` : 'All replied'}
             {' '}&middot; {messages.length} total
           </p>
         </div>
-        <div className="flex gap-2">
-          <button onClick={() => setShowAll(true)} className={pillClass(showAll)}>All</button>
-          <button onClick={() => setShowAll(false)} className={pillClass(!showAll)}>
+        <div className="admin-messages-pills">
+          <button onClick={() => setShowAll(true)} className={`admin-messages-pill ${showAll ? 'admin-messages-pill--active' : 'admin-messages-pill--inactive'}`}>All</button>
+          <button onClick={() => setShowAll(false)} className={`admin-messages-pill ${!showAll ? 'admin-messages-pill--active' : 'admin-messages-pill--inactive'}`}>
             Unreplied{unrepliedCount > 0 && ` (${unrepliedCount})`}
           </button>
         </div>
       </div>
 
       {errorMessage && (
-        <div className="mb-5 py-2.5 px-4 rounded-lg bg-pink-pale text-pink-deep text-sm flex items-center justify-between">
+        <div className="admin-messages-error">
           <span>{errorMessage}</span>
-          <button onClick={() => replyMutation.reset()} className="text-pink-deep/50 hover:text-pink-deep cursor-pointer ml-4">&times;</button>
+          <button onClick={() => replyMutation.reset()} className="admin-messages-error-close">&times;</button>
         </div>
       )}
       {success && (
-        <div className="mb-5 py-2.5 px-4 rounded-lg bg-green/10 text-green-dark text-sm flex items-center justify-between">
+        <div className="admin-messages-success">
           <span>{success}</span>
-          <button onClick={() => setSuccess('')} className="text-green-dark/50 hover:text-green-dark cursor-pointer ml-4">&times;</button>
+          <button onClick={() => setSuccess('')} className="admin-messages-success-close">&times;</button>
         </div>
       )}
 
       {isLoading && (
-        <div className="flex justify-center py-16">
-          <div className="w-6 h-6 border-2 border-green-pale border-t-green rounded-full animate-spin" />
+        <div className="admin-messages-loading">
+          <div className="admin-messages-spinner" />
         </div>
       )}
 
       {!isLoading && filtered.length === 0 && (
-        <div className="py-16 text-center">
-          <p className="text-ink-light">{showAll ? 'No messages yet.' : 'All messages have been replied to.'}</p>
+        <div className="admin-messages-empty">
+          <p className="admin-messages-empty-text">{showAll ? 'No messages yet.' : 'All messages have been replied to.'}</p>
         </div>
       )}
 
-      <div className="space-y-3">
+      <div className="admin-messages-list">
         {filtered.map(msg => (
-          <div key={msg.id} className="bg-white/50 rounded-xl px-6 py-4 border border-green-pale/15 transition-all duration-300 hover:border-green-pale/40 hover:shadow-md hover:-translate-y-0.5">
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-2">
-                <p className="text-sm font-medium text-ink">{msg.user?.name || msg.user?.email || 'Customer'}</p>
+          <div key={msg.id} className="admin-message-card">
+            <div className="admin-message-top">
+              <div className="admin-message-user-wrap">
+                <p className="admin-message-user">{msg.user?.name || msg.user?.email || 'Customer'}</p>
                 {!msg.reply && (
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-pink-pale text-pink-deep">New</span>
+                  <span className="admin-message-new-tag">New</span>
                 )}
               </div>
-              <p className="text-xs text-ink-faint">{new Date(msg.createdAt).toLocaleDateString()}</p>
+              <p className="admin-message-date">{new Date(msg.createdAt).toLocaleDateString()}</p>
             </div>
-            <p className="text-ink text-sm mb-2">{msg.content}</p>
+            <p className="admin-message-content">{msg.content}</p>
 
             {msg.reply ? (
-              <div className="mt-3 pl-4 border-l-2 border-pink-light/50">
-                <p className="text-xs font-medium text-green-dark mb-1">Staff reply</p>
-                <p className="text-sm text-ink-light">{msg.reply}</p>
+              <div className="admin-message-reply">
+                <p className="admin-message-reply-label">Staff reply</p>
+                <p className="admin-message-reply-text">{msg.reply}</p>
               </div>
             ) : (
               <>
                 {replyingTo === msg.id ? (
                   <form
                     onSubmit={handleSubmit((data) => replyMutation.mutate({ msgId: msg.id, reply: data.reply }))}
-                    className="mt-3 pt-3 border-t border-green-pale/15"
+                    className="admin-message-reply-form"
                   >
                     <textarea
                       rows={2}
                       {...register('reply', { required: true })}
                       placeholder="Type your reply..."
-                      className="w-full px-4 py-2.5 rounded-lg border border-green-pale/20 bg-cream text-ink placeholder-ink-faint focus:outline-none focus:border-green focus:ring-1 focus:ring-green/20 transition-colors resize-none text-sm mb-3"
+                      className="admin-message-reply-textarea"
                     />
-                    <div className="flex gap-2">
+                    <div className="admin-message-reply-actions">
                       <button
                         type="submit"
                         disabled={replyMutation.isPending}
-                        className="btn-primary px-4 py-1.5 text-sm font-medium rounded-full cursor-pointer disabled:opacity-50"
+                        className="admin-message-reply-submit btn-primary"
                       >
                         {replyMutation.isPending ? 'Sending...' : 'Send reply'}
                       </button>
                       <button
                         type="button"
                         onClick={cancelReply}
-                        className="px-4 py-1.5 text-sm font-medium text-ink-light border border-green-pale/30 rounded-full hover:border-green-pale/60 transition-colors cursor-pointer"
+                        className="admin-message-reply-cancel"
                       >
                         Cancel
                       </button>
@@ -165,7 +159,7 @@ function AdminMessages() {
                 ) : (
                   <button
                     onClick={() => startReply(msg.id)}
-                    className="mt-2 btn-outline px-4 py-1.5 text-sm font-medium rounded-full cursor-pointer"
+                    className="admin-message-reply-btn btn-outline"
                   >
                     Reply
                   </button>

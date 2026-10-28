@@ -1,0 +1,28 @@
+@reference "../index.css";
+
+/* ניווט ניהול – טאבים */
+
+/* מיכל הטאבים */
+.admin-nav {
+  @apply flex gap-1 mb-8 pb-px;
+  border-bottom: 1px solid rgb(201 162 169 / 0.3);
+}
+
+/* טאב בודד */
+.admin-nav-tab {
+  @apply px-4 py-2.5 text-sm font-medium no-underline transition-colors rounded-t-lg -mb-px;
+}
+
+/* טאב פעיל */
+.admin-nav-tab--active {
+  @apply text-pink-dark bg-white;
+  border-bottom: 2px solid var(--color-pink);
+}
+
+/* טאב לא פעיל */
+.admin-nav-tab--inactive {
+  @apply text-ink-faint;
+}
+.admin-nav-tab--inactive:hover {
+  @apply text-ink-light;
+}

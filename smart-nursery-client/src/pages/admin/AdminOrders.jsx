@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useAuth } from '../../hooks/useAuth'
 import AdminNav from '../../components/AdminNav'
+import './AdminOrders.css'
 
 function AdminOrders() {
   const { token } = useAuth()
@@ -43,93 +44,91 @@ function AdminOrders() {
 
   const errorMessage = statusMutation.error?.message
 
-  const statusStyle = (status) => {
-    if (status === 'COMPLETED') return 'bg-green/10 text-green-dark'
-    if (status === 'CANCELLED') return 'bg-pink-pale text-pink-deep'
-    return 'bg-cream-deep text-ink-light'
+  const statusClass = (status) => {
+    if (status === 'COMPLETED') return 'admin-order-status--completed'
+    if (status === 'CANCELLED') return 'admin-order-status--cancelled'
+    return 'admin-order-status--pending'
   }
 
   const isPending = (status) => status !== 'COMPLETED' && status !== 'CANCELLED'
   const filtered = filter ? orders.filter(o => o.status === filter) : orders
   const pendingCount = orders.filter(o => isPending(o.status)).length
 
-  const pillClass = (value) =>
-    `px-4 py-1.5 rounded-full text-sm font-medium transition-colors cursor-pointer ${
-      filter === value
-        ? 'bg-pink-dark text-white border border-pink-dark'
-        : 'text-ink-light hover:text-ink border border-pink-light/50 hover:border-pink-light bg-white/50'
-    }`
-
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="admin-orders-page">
       <AdminNav />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+      <div className="admin-orders-header">
         <div>
-          <h1 className="font-display text-3xl text-ink">Manage orders</h1>
-          <p className="text-ink-light text-sm mt-1">
+          <h1 className="admin-orders-title">Manage orders</h1>
+          <p className="admin-orders-subtitle">
             {pendingCount > 0 ? `${pendingCount} pending` : 'All caught up'}
             {' '}&middot; {orders.length} total
           </p>
         </div>
-        <div className="flex gap-2 flex-wrap">
-          <button onClick={() => setFilter('')} className={pillClass('')}>All</button>
-          <button onClick={() => setFilter('PENDING')} className={pillClass('PENDING')}>Pending</button>
-          <button onClick={() => setFilter('COMPLETED')} className={pillClass('COMPLETED')}>Completed</button>
-          <button onClick={() => setFilter('CANCELLED')} className={pillClass('CANCELLED')}>Cancelled</button>
+        <div className="admin-orders-pills">
+          {[['', 'All'], ['PENDING', 'Pending'], ['COMPLETED', 'Completed'], ['CANCELLED', 'Cancelled']].map(([value, label]) => (
+            <button
+              key={value}
+              onClick={() => setFilter(value)}
+              className={`admin-orders-pill ${filter === value ? 'admin-orders-pill--active' : 'admin-orders-pill--inactive'}`}
+            >
+              {label}
+            </button>
+          ))}
         </div>
       </div>
 
       {errorMessage && (
-        <div className="mb-5 py-2.5 px-4 rounded-lg bg-pink-pale text-pink-deep text-sm flex items-center justify-between">
+        <div className="admin-orders-error">
           <span>{errorMessage}</span>
-          <button onClick={() => statusMutation.reset()} className="text-pink-deep/50 hover:text-pink-deep cursor-pointer ml-4">&times;</button>
+          <button onClick={() => statusMutation.reset()} className="admin-orders-error-close">&times;</button>
         </div>
       )}
       {success && (
-        <div className="mb-5 py-2.5 px-4 rounded-lg bg-green/10 text-green-dark text-sm flex items-center justify-between">
+        <div className="admin-orders-success">
           <span>{success}</span>
-          <button onClick={() => setSuccess('')} className="text-green-dark/50 hover:text-green-dark cursor-pointer ml-4">&times;</button>
+          <button onClick={() => setSuccess('')} className="admin-orders-success-close">&times;</button>
         </div>
       )}
 
       {isLoading && (
-        <div className="flex justify-center py-16">
-          <div className="w-6 h-6 border-2 border-green-pale border-t-green rounded-full animate-spin" />
+        <div className="admin-orders-loading">
+          <div className="admin-orders-spinner" />
         </div>
       )}
 
       {!isLoading && filtered.length === 0 && (
-        <div className="py-16 text-center">
-          <p className="text-ink-light">{filter ? `No ${filter.toLowerCase()} orders.` : 'No orders yet.'}</p>
+        <div className="admin-orders-empty">
+          <p className="admin-orders-empty-text">{filter ? `No ${filter.toLowerCase()} orders.` : 'No orders yet.'}</p>
         </div>
       )}
 
-      <div className="space-y-3">
+      <div className="admin-orders-list">
         {filtered.map(order => (
-          <div key={order.id} className="bg-white/50 rounded-xl px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border border-green-pale/15 transition-all duration-300 hover:border-green-pale/40 hover:shadow-md hover:-translate-y-0.5">
-            <div className="flex-1 min-w-0">
-              <p className="font-display text-lg text-ink">{order.plant?.name || 'Unknown plant'}</p>
-              <div className="flex items-center gap-3 mt-1 text-sm text-ink-faint">
+          <div key={order.id} className="admin-order-card">
+            <div className="admin-order-info">
+              <p className="admin-order-plant">{order.plant?.name || 'Unknown plant'}</p>
+              <div className="admin-order-meta">
                 {order.user && <span>{order.user.name || order.user.email}</span>}
                 <span>&middot;</span>
                 <span>{new Date(order.createdAt).toLocaleDateString()}</span>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <span className={`px-3 py-1 rounded-full text-xs font-medium ${statusStyle(order.status)}`}>
+            <div className="admin-order-actions">
+              <span className={`admin-order-status ${statusClass(order.status)}`}>
                 {order.status.charAt(0) + order.status.slice(1).toLowerCase()}
               </span>
               {isPending(order.status) && (
                 <>
                   <button
                     onClick={() => statusMutation.mutate({ orderId: order.id, status: 'COMPLETED' })}
-                    className="px-4 py-1.5 text-sm font-medium text-green-dark border border-green-pale rounded-full hover:bg-green/10 transition-colors cursor-pointer"
+                    className="admin-order-complete-btn"
                   >
                     Complete
                   </button>
                   <button
                     onClick={() => statusMutation.mutate({ orderId: order.id, status: 'CANCELLED' })}
-                    className="px-4 py-1.5 text-sm font-medium text-pink-dark border border-pink-light rounded-full hover:bg-pink-pale transition-colors cursor-pointer"
+                    className="admin-order-cancel-btn"
                   >
                     Cancel
                   </button>

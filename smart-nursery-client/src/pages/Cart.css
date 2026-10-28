@@ -1,0 +1,196 @@
+@reference "../index.css";
+
+/* עמוד העגלה */
+
+/* מיכל הדף */
+.cart-page {
+  @apply max-w-3xl mx-auto;
+}
+
+/* מצב ריק / התחברות / הצלחה */
+.cart-center {
+  @apply max-w-3xl mx-auto py-16 text-center;
+}
+.cart-center-text {
+  @apply text-ink-light mb-6;
+}
+.cart-center-link {
+  @apply px-7 py-3 rounded-full no-underline text-sm font-medium;
+}
+.cart-success-title {
+  @apply font-display text-2xl text-ink mb-2;
+}
+.cart-success-subtitle {
+  @apply text-ink-light mb-3;
+}
+.cart-success-note {
+  @apply text-ink-faint text-sm mb-8;
+}
+
+/* כותרת */
+.cart-title {
+  @apply font-display text-3xl text-ink mb-8;
+}
+
+/* רשימת פריטים */
+.cart-items {
+  @apply space-y-3;
+}
+
+/* פריט בעגלה */
+.cart-item {
+  @apply rounded-xl px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-300;
+  background: rgb(255 255 255 / 0.5);
+  border: 1px solid rgb(167 184 155 / 0.15);
+}
+.cart-item:hover {
+  border-color: rgb(167 184 155 / 0.4);
+  @apply shadow-md -translate-y-0.5;
+}
+.cart-item-name {
+  @apply font-display text-lg text-ink;
+}
+.cart-item-price {
+  @apply text-ink-faint text-sm;
+}
+
+/* בקרת כמות */
+.cart-item-controls {
+  @apply flex items-center gap-4;
+}
+.cart-qty-wrap {
+  @apply flex items-center gap-2;
+}
+.cart-qty-button {
+  @apply w-8 h-8 rounded-full text-ink-light transition-colors cursor-pointer flex items-center justify-center;
+  border: 1px solid rgb(167 184 155 / 0.3);
+}
+.cart-qty-button:hover {
+  @apply border-green text-green;
+}
+.cart-qty-value {
+  @apply w-8 text-center text-sm font-medium text-ink;
+}
+.cart-item-total {
+  @apply text-green-dark font-semibold min-w-[60px] text-right;
+}
+.cart-item-remove {
+  @apply text-ink-faint hover:text-pink-dark transition-colors cursor-pointer text-lg;
+}
+
+/* סיכום תחתון */
+.cart-footer {
+  @apply mt-8 pt-6;
+  border-top: 1px solid rgb(167 184 155 / 0.2);
+}
+.cart-total-row {
+  @apply flex justify-between items-center mb-6;
+}
+.cart-total-label {
+  @apply font-display text-xl text-ink;
+}
+.cart-total-value {
+  @apply text-green-dark font-semibold text-2xl;
+}
+.cart-checkout-button {
+  @apply w-full py-3 rounded-full font-medium cursor-pointer;
+}
+
+/* עמוד צ'קאאוט */
+.checkout-back {
+  @apply text-sm text-ink-faint hover:text-green transition-colors cursor-pointer mb-6 flex items-center gap-1;
+}
+.checkout-title {
+  @apply font-display text-3xl text-ink mb-8;
+}
+
+/* שגיאה */
+.checkout-error {
+  @apply mb-6 py-3 px-5 rounded-xl bg-pink-pale text-pink-deep text-sm flex items-center justify-between;
+}
+.checkout-error-close {
+  @apply cursor-pointer ml-4;
+  color: rgb(118 69 83 / 0.5);
+}
+.checkout-error-close:hover {
+  @apply text-pink-deep;
+}
+
+/* כרטיס טופס */
+.checkout-card {
+  @apply rounded-xl p-6 mb-6;
+  background: rgb(255 255 255 / 0.5);
+  border: 1px solid rgb(167 184 155 / 0.15);
+}
+.checkout-card-title {
+  @apply font-display text-lg text-ink mb-4;
+}
+
+/* שדות */
+.checkout-fields {
+  @apply space-y-4;
+}
+.checkout-label {
+  @apply block text-sm font-medium text-ink-light mb-1.5;
+}
+.checkout-input {
+  @apply w-full px-4 py-2.5 rounded-lg bg-white text-ink text-sm transition-colors;
+  border: 1px solid rgb(167 184 155 / 0.2);
+}
+.checkout-input::placeholder {
+  @apply text-ink-faint;
+}
+.checkout-input:focus {
+  @apply outline-none border-green;
+  box-shadow: 0 0 0 1px rgb(95 113 80 / 0.2);
+}
+.checkout-textarea {
+  @apply resize-none;
+}
+.checkout-field-error {
+  @apply text-pink-dark text-xs mt-1;
+}
+
+/* סיכום הזמנה */
+.checkout-summary-items {
+  @apply space-y-2;
+}
+.checkout-summary-row {
+  @apply flex justify-between text-sm;
+}
+.checkout-summary-name {
+  @apply text-ink;
+}
+.checkout-summary-qty {
+  @apply text-ink-faint;
+}
+.checkout-summary-price {
+  @apply text-ink font-medium;
+}
+.checkout-summary-divider {
+  @apply mt-4 pt-4 flex justify-between;
+  border-top: 1px solid rgb(167 184 155 / 0.2);
+}
+.checkout-summary-total-label {
+  @apply font-display text-lg text-ink;
+}
+.checkout-summary-total-value {
+  @apply text-green-dark font-semibold text-xl;
+}
+
+/* באנר תשלום */
+.checkout-payment-banner {
+  @apply mb-4 py-2.5 px-4 rounded-lg text-green-dark text-sm flex items-center gap-2;
+  background: rgb(95 113 80 / 0.08);
+}
+.checkout-payment-icon {
+  @apply w-4 h-4 shrink-0;
+}
+
+/* כפתור אישור */
+.checkout-submit {
+  @apply w-full py-3 rounded-full font-medium cursor-pointer;
+}
+.checkout-submit:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}

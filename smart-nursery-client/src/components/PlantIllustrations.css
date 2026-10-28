@@ -1,0 +1,8 @@
+@reference "../index.css";
+
+/* איורי צמחים */
+
+/* מיכל SVG כללי */
+.plant-illustration {
+  @apply w-full h-full;
+}

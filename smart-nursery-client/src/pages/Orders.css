@@ -1,0 +1,94 @@
+@reference "../index.css";
+
+/* עמוד ההזמנות */
+
+/* מיכל הדף */
+.orders-page {
+  @apply max-w-3xl mx-auto;
+}
+
+/* כותרת ראשית */
+.orders-title {
+  @apply font-display text-3xl text-ink mb-2;
+}
+
+/* באנר תשלום – הודעה ירוקה */
+.orders-payment-banner {
+  @apply mb-8 py-2.5 px-4 rounded-lg text-green-dark text-sm flex items-center gap-2;
+  background: rgb(95 113 80 / 0.08);
+}
+
+/* אייקון באנר */
+.orders-payment-icon {
+  @apply w-4 h-4 shrink-0;
+}
+
+/* הודעת שגיאה */
+.orders-error {
+  @apply mb-5 py-2.5 px-4 rounded-lg bg-pink-pale text-pink-deep text-sm;
+}
+
+/* מיכל טעינה */
+.orders-loading {
+  @apply flex justify-center py-16;
+}
+
+/* ספינר */
+.orders-spinner {
+  @apply w-6 h-6 border-2 border-green-pale border-t-green rounded-full animate-spin;
+}
+
+/* מצב ריק */
+.orders-empty {
+  @apply py-16 text-center;
+}
+.orders-empty-text {
+  @apply text-ink-light;
+}
+
+/* רשימת הזמנות */
+.orders-list {
+  @apply space-y-3;
+}
+
+/* שורת הזמנה */
+.order-item {
+  @apply rounded-xl px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-all duration-300;
+  background: rgb(255 255 255 / 0.5);
+  border: 1px solid rgb(167 184 155 / 0.15);
+}
+.order-item:hover {
+  border-color: rgb(167 184 155 / 0.4);
+  @apply shadow-md -translate-y-0.5;
+}
+
+/* שם הצמח בהזמנה */
+.order-item-name {
+  @apply font-display text-lg text-ink;
+}
+
+/* תאריך הזמנה */
+.order-item-date {
+  @apply text-ink-faint text-sm;
+}
+
+/* תג סטטוס */
+.order-status {
+  @apply px-3 py-1 rounded-full text-xs font-medium self-start;
+}
+
+/* סטטוס: הושלם */
+.order-status--completed {
+  @apply text-green-dark;
+  background: rgb(95 113 80 / 0.1);
+}
+
+/* סטטוס: בוטל */
+.order-status--cancelled {
+  @apply bg-pink-pale text-pink-deep;
+}
+
+/* סטטוס: ממתין */
+.order-status--pending {
+  @apply bg-cream-deep text-ink-light;
+}

@@ -1,0 +1,89 @@
+@reference "../index.css";
+
+/* עמוד תזכורות טיפול */
+
+/* מיכל הדף */
+.reminders-page {
+  @apply max-w-2xl mx-auto;
+}
+
+/* אזור כותרת */
+.reminders-header {
+  @apply mb-10;
+}
+
+/* כותרת ראשית */
+.reminders-title {
+  @apply font-display text-3xl text-ink mb-2;
+}
+
+/* כותרת משנה */
+.reminders-subtitle {
+  color: rgb(144 90 103 / 0.6);
+}
+
+/* הודעת שגיאה */
+.reminders-error {
+  @apply mb-5 py-2.5 px-4 rounded-lg bg-pink-pale text-pink-deep text-sm;
+}
+
+/* מיכל טעינה */
+.reminders-loading {
+  @apply flex justify-center py-16;
+}
+
+/* ספינר */
+.reminders-spinner {
+  @apply w-6 h-6 border-2 border-green-pale border-t-green rounded-full animate-spin;
+}
+
+/* מצב ריק */
+.reminders-empty {
+  @apply py-16 text-center;
+}
+.reminders-empty-text {
+  @apply text-ink-light;
+}
+
+/* רשימת תזכורות */
+.reminders-list {
+  @apply space-y-3;
+}
+
+/* שורת תזכורת */
+.reminder-item {
+  @apply rounded-xl px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 transition-all duration-300;
+  background: rgb(255 255 255 / 0.5);
+  border: 1px solid rgb(167 184 155 / 0.15);
+}
+.reminder-item:hover {
+  border-color: rgb(167 184 155 / 0.4);
+  @apply shadow-md -translate-y-0.5;
+}
+
+/* שורה עליונה – תג + הודעה */
+.reminder-item-top {
+  @apply flex items-center gap-2.5 mb-1;
+}
+
+/* תג סוג תזכורת */
+.reminder-type-tag {
+  @apply px-2.5 py-0.5 rounded-full text-xs font-medium;
+  background-color: #F5EAE6;
+  color: #905A67;
+}
+
+/* טקסט תזכורת */
+.reminder-message {
+  @apply text-ink font-medium text-sm;
+}
+
+/* תאריך */
+.reminder-date {
+  @apply text-xs text-ink-faint;
+}
+
+/* כפתור סימון כבוצע */
+.reminder-done-button {
+  @apply px-4 py-1.5 text-sm font-medium rounded-full cursor-pointer shrink-0;
+}

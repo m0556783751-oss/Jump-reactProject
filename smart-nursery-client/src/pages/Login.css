@@ -1,0 +1,80 @@
+@reference "../index.css";
+
+/* עמוד ההתחברות */
+
+/* מיכל הדף – מרכוז וריווח עליון */
+.login-page {
+  @apply max-w-sm mx-auto pt-8;
+}
+
+/* כרטיס הטופס – רקע שקוף עם מסגרת עדינה */
+.login-card {
+  @apply rounded-2xl p-8;
+  background: rgb(255 255 255 / 0.5);
+  border: 1px solid rgb(167 184 155 / 0.15);
+}
+
+/* כותרת ראשית */
+.login-title {
+  @apply font-display text-3xl text-ink mb-1;
+}
+
+/* כותרת משנה – טקסט ורוד עדין */
+.login-subtitle {
+  @apply text-sm mb-8;
+  color: rgb(144 90 103 / 0.5);
+}
+
+/* הודעת שגיאה כללית */
+.login-error {
+  @apply mb-5 py-2.5 px-4 rounded-lg bg-pink-pale text-pink-deep text-sm;
+}
+
+/* טופס – רווח בין השדות */
+.login-form {
+  @apply space-y-4;
+}
+
+/* תווית שדה */
+.login-label {
+  @apply block text-sm font-medium text-ink-light mb-1.5;
+}
+
+/* שדה קלט טקסט */
+.login-input {
+  @apply w-full px-4 py-2.5 rounded-lg bg-white text-ink text-sm transition-colors;
+  border: 1px solid rgb(167 184 155 / 0.2);
+}
+.login-input::placeholder {
+  @apply text-ink-faint;
+}
+.login-input:focus {
+  @apply outline-none border-green;
+  box-shadow: 0 0 0 1px rgb(95 113 80 / 0.2);
+}
+
+/* הודעת שגיאת שדה */
+.login-field-error {
+  @apply text-pink-dark text-xs mt-1;
+}
+
+/* כפתור שליחה – משתמש גם ב-btn-primary הגלובלי */
+.login-submit {
+  @apply w-full py-2.5 rounded-lg font-medium text-sm cursor-pointer;
+}
+.login-submit:disabled {
+  @apply opacity-50;
+}
+
+/* אזור קישור להרשמה */
+.login-register-text {
+  @apply text-center mt-8 text-sm text-ink-faint;
+}
+
+/* קישור הרשמה */
+.login-register-link {
+  @apply text-green transition-colors;
+}
+.login-register-link:hover {
+  @apply text-green-dark;
+}

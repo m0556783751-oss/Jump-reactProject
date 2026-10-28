@@ -1,0 +1,117 @@
+@reference "../index.css";
+
+/* עמוד הודעות */
+
+/* מיכל הדף */
+.messages-page {
+  @apply max-w-2xl mx-auto;
+}
+
+/* כותרת ראשית */
+.messages-title {
+  @apply font-display text-3xl text-ink mb-8;
+}
+
+/* כרטיס שליחת הודעה */
+.messages-send-card {
+  @apply rounded-xl p-6 mb-10;
+  background: rgb(255 255 255 / 0.5);
+  border: 1px solid rgb(167 184 155 / 0.15);
+}
+
+/* כותרת טופס */
+.messages-send-title {
+  @apply font-medium text-ink mb-4;
+}
+
+/* הודעת שגיאה */
+.messages-error {
+  @apply mb-4 py-2.5 px-4 rounded-lg bg-pink-pale text-pink-deep text-sm;
+}
+
+/* הודעת הצלחה */
+.messages-success {
+  @apply mb-4 py-2.5 px-4 rounded-lg text-green-dark text-sm;
+  background: rgb(95 113 80 / 0.1);
+}
+
+/* שדה טקסט */
+.messages-textarea {
+  @apply w-full px-4 py-3 rounded-lg bg-cream text-ink text-sm transition-colors resize-none mb-4;
+  border: 1px solid rgb(167 184 155 / 0.2);
+}
+.messages-textarea::placeholder {
+  @apply text-ink-faint;
+}
+.messages-textarea:focus {
+  @apply outline-none border-green;
+  box-shadow: 0 0 0 1px rgb(95 113 80 / 0.2);
+}
+
+/* כפתור שליחה */
+.messages-send-button {
+  @apply px-5 py-2 text-sm font-medium rounded-full cursor-pointer;
+}
+.messages-send-button:disabled {
+  @apply opacity-50;
+}
+
+/* כותרת היסטוריה */
+.messages-history-label {
+  @apply text-xs font-medium uppercase tracking-widest text-ink-faint mb-4;
+}
+
+/* מיכל טעינה */
+.messages-loading {
+  @apply flex justify-center py-8;
+}
+
+/* ספינר */
+.messages-spinner {
+  @apply w-6 h-6 border-2 border-green-pale border-t-green rounded-full animate-spin;
+}
+
+/* מצב ריק */
+.messages-empty {
+  @apply py-8 text-center;
+}
+.messages-empty-text {
+  @apply text-ink-light;
+}
+
+/* רשימת הודעות */
+.messages-list {
+  @apply space-y-3;
+}
+
+/* כרטיס הודעה */
+.message-card {
+  @apply rounded-xl px-6 py-4 transition-all duration-300;
+  background: rgb(255 255 255 / 0.5);
+  border: 1px solid rgb(167 184 155 / 0.15);
+}
+.message-card:hover {
+  border-color: rgb(167 184 155 / 0.4);
+  @apply shadow-md -translate-y-0.5;
+}
+
+/* תוכן הודעה */
+.message-content {
+  @apply text-ink text-sm mb-1;
+}
+
+/* תאריך הודעה */
+.message-date {
+  @apply text-xs text-ink-faint;
+}
+
+/* תשובת צוות */
+.message-reply {
+  @apply mt-3 pl-4;
+  border-left: 2px solid rgb(201 162 169 / 0.5);
+}
+
+/* טקסט תשובה */
+.message-reply-text {
+  @apply text-sm text-ink-light;
+}

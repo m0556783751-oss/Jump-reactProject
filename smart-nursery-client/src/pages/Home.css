@@ -1,0 +1,175 @@
+@reference "../index.css";
+
+/* עמוד הבית */
+
+/* מיכל ראשי */
+.home-page {
+  @apply -mx-4 sm:-mx-6 -mt-10;
+}
+
+/* ─── הירו ─── */
+.home-hero {
+  @apply relative overflow-hidden px-4 sm:px-6 pt-14 sm:pt-20 pb-6 sm:pb-10 min-h-[75vh] flex items-center justify-center;
+}
+.home-hero-blob-1 {
+  @apply absolute w-[220px] h-[220px] -z-10;
+  top: 12%;
+  left: 6%;
+  background: rgb(167 184 155 / 0.15);
+  animation: float-slow 22s ease-in-out infinite, morph-alt 28s ease-in-out infinite;
+}
+.home-hero-blob-2 {
+  @apply absolute w-[180px] h-[180px] -z-10;
+  bottom: 15%;
+  right: 8%;
+  background: rgb(227 205 210 / 0.15);
+  animation: float-mid 16s ease-in-out infinite, morph 18s ease-in-out infinite;
+}
+.home-hero-content {
+  @apply max-w-3xl mx-auto text-center relative;
+}
+.home-hero-logo {
+  @apply w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-5;
+}
+.home-hero-title {
+  @apply font-display text-5xl sm:text-7xl font-light tracking-[0.15em] text-green-dark uppercase mb-4;
+}
+.home-hero-divider {
+  @apply w-20 h-px mx-auto mb-4;
+  background: rgb(201 162 169 / 0.6);
+}
+.home-hero-tagline {
+  @apply font-display text-xl sm:text-2xl italic text-ink-faint font-light mb-10;
+}
+.home-hero-cta {
+  @apply inline-block px-9 py-3.5 no-underline text-sm font-semibold text-green-dark rounded-full transition-all duration-300;
+  background: rgb(167 184 155 / 0.25);
+  border: 1px solid rgb(167 184 155 / 0.5);
+}
+.home-hero-cta:hover {
+  background: rgb(167 184 155 / 0.4);
+  border-color: rgb(167 184 155 / 0.8);
+  @apply shadow-sm;
+}
+.home-hero-scroll {
+  @apply mt-10 animate-bounce;
+}
+.home-hero-scroll-icon {
+  @apply w-5 h-5 mx-auto;
+  color: rgb(136 150 124 / 0.4);
+}
+
+/* ─── מפריד גבעול ─── */
+.home-stem-divider {
+  @apply max-w-sm mx-auto px-8 py-1;
+}
+.home-stem-svg {
+  @apply w-full h-5;
+}
+
+/* ─── הקונספט ─── */
+.home-concept {
+  @apply relative overflow-hidden px-4 sm:px-6 py-10 sm:py-16;
+  background: rgb(227 205 210 / 0.12);
+}
+.home-concept-inner {
+  @apply max-w-5xl mx-auto;
+}
+.home-concept-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center;
+}
+.home-concept-label {
+  @apply text-pink font-medium text-sm tracking-[0.2em] uppercase mb-3;
+}
+.home-concept-title {
+  @apply font-display text-4xl sm:text-5xl text-ink leading-[1.15] mb-5 font-medium;
+}
+.home-concept-text {
+  @apply text-ink-light leading-relaxed mb-3;
+}
+.home-concept-text:last-child {
+  @apply mb-0;
+}
+
+/* כרטיס מוצר SVG */
+.home-product-card {
+  @apply flex justify-center;
+}
+.home-product-svg {
+  @apply w-full max-w-[280px] sm:max-w-[300px] transition-all duration-300;
+}
+.home-product-card:hover .home-product-svg {
+  @apply -translate-y-1 drop-shadow-lg;
+}
+
+/* ─── איך זה עובד ─── */
+.home-how {
+  @apply px-4 sm:px-6 py-10 sm:py-16;
+  background: rgb(167 184 155 / 0.1);
+}
+.home-how-inner {
+  @apply max-w-4xl mx-auto;
+}
+.home-how-title {
+  @apply text-center mb-10 font-display text-3xl sm:text-4xl text-ink font-medium;
+}
+.home-how-steps-wrap {
+  @apply relative;
+}
+.home-how-vine {
+  @apply hidden md:block absolute top-10 left-[16%] right-[16%];
+}
+.home-how-vine-svg {
+  @apply w-full h-8;
+}
+.home-how-grid {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 relative z-10;
+}
+
+/* כרטיס שלב */
+.home-step {
+  @apply flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1;
+}
+.home-step-icon-wrap {
+  @apply w-16 h-16 rounded-2xl flex items-center justify-center mb-4 shadow-sm transition-all duration-300;
+  background: rgb(255 255 255 / 0.8);
+  border: 1px solid rgb(167 184 155 / 0.4);
+}
+.home-step:hover .home-step-icon-wrap {
+  @apply shadow-md;
+  transform: scale(1.03);
+}
+.home-step-icon {
+  @apply w-7 h-7;
+}
+.home-step-number {
+  @apply text-ink-faint text-[11px] font-medium tracking-[0.2em] uppercase mb-1.5;
+}
+.home-step-title {
+  @apply font-display text-lg text-ink mb-1.5 font-medium;
+}
+.home-step-text {
+  @apply text-ink-light text-sm leading-relaxed max-w-[240px];
+}
+
+/* ─── CTA תחתון ─── */
+.home-cta {
+  @apply max-w-xl mx-auto px-4 sm:px-6 py-10 sm:py-14;
+}
+.home-cta-inner {
+  @apply text-center;
+}
+.home-cta-title {
+  @apply font-display text-3xl text-ink mb-3;
+}
+.home-cta-subtitle {
+  @apply mb-6 font-light;
+  color: rgb(144 90 103 / 0.5);
+}
+.home-cta-button {
+  @apply inline-block px-9 py-3.5 no-underline text-sm font-semibold text-white rounded-full transition-all duration-300;
+}
+.home-cta-button:hover {
+  @apply shadow-lg;
+  transform: scale(1.03);
+}

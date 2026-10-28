@@ -1,0 +1,102 @@
+@reference "../index.css";
+
+/* עמוד הגינה שלי */
+
+/* אזור כותרת */
+.garden-header {
+  @apply mb-10;
+}
+
+/* כותרת ראשית */
+.garden-title {
+  @apply font-display text-3xl text-ink mb-2;
+}
+
+/* כותרת משנה */
+.garden-subtitle {
+  color: rgb(144 90 103 / 0.6);
+}
+
+/* הודעת שגיאה */
+.garden-error {
+  @apply mb-5 py-2.5 px-4 rounded-lg bg-pink-pale text-pink-deep text-sm;
+}
+
+/* מיכל טעינה */
+.garden-loading {
+  @apply flex justify-center py-16;
+}
+
+/* ספינר */
+.garden-spinner {
+  @apply w-6 h-6 border-2 border-green-pale border-t-green rounded-full animate-spin;
+}
+
+/* מצב ריק */
+.garden-empty {
+  @apply py-16 text-center;
+}
+.garden-empty-text {
+  @apply text-ink-light;
+}
+
+/* רשת כרטיסי צמחים */
+.garden-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5;
+}
+
+/* כרטיס צמח */
+.garden-card {
+  @apply rounded-2xl overflow-hidden transition-all duration-500;
+  background: rgb(255 255 255 / 0.5);
+  border: 1px solid rgb(167 184 155 / 0.15);
+}
+.garden-card:hover {
+  border-color: rgb(167 184 155 / 0.4);
+  @apply shadow-lg -translate-y-1;
+}
+
+/* חלק עליון – כותרת ותג */
+.garden-card-header {
+  @apply px-4 pt-4 pb-2;
+  background-color: #FDF8F6;
+}
+
+/* שם הצמח */
+.garden-card-name {
+  @apply font-display text-xl text-ink mb-0.5;
+}
+
+/* תג קטגוריה */
+.garden-card-category {
+  @apply inline-block px-2 py-0.5 rounded-full text-[10px] font-medium;
+  background-color: #F5EAE6;
+  color: #905A67;
+}
+
+/* חלק תחתון – תזכורות */
+.garden-card-body {
+  @apply px-4 pt-3 pb-4;
+}
+
+/* כותרת "דורש תשומת לב" */
+.garden-attention-label {
+  @apply text-xs font-medium uppercase tracking-widest text-pink-dark mb-2;
+}
+
+/* מיכל תגי תזכורת */
+.garden-reminders {
+  @apply flex flex-wrap gap-1.5;
+}
+
+/* תג תזכורת */
+.garden-reminder-tag {
+  @apply px-2.5 py-0.5 rounded-full text-xs font-medium;
+  background-color: #F5EAE6;
+  color: #905A67;
+}
+
+/* הודעת "הכל בסדר" */
+.garden-all-good {
+  @apply text-xs font-medium text-green;
+}
